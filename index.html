@@ -226,7 +226,7 @@ body.focus #v>.card:first-child{top:calc(10px + env(safe-area-inset-top))!import
 #nv .nd-lab{position:absolute;left:0;right:0;top:152px;text-align:center;font-size:.8rem;color:#8b8b95}
 /* خانه */
 .n-top{display:flex;align-items:center;gap:6px;margin-bottom:10px}.n-top b{font-size:1.02em}.n-sp{flex:1}
-.n-logo{width:34px;height:34px;border-radius:50%;background:#fff;color:#1f9d55;font-weight:800;font-size:11px;display:grid;place-items:center;box-shadow:inset 0 0 0 2px #1f9d55;margin-left:4px}
+.n-logo{width:34px;height:34px;border-radius:50%;background:#fff;color:#1f9d55;font-weight:800;font-size:11px;display:grid;place-items:center;box-shadow:inset 0 0 0 2px #1f9d55;margin-left:4px;overflow:hidden}.n-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .n-chip{display:inline-flex;gap:5px;align-items:center;padding:5px 11px;border-radius:99px;background:var(--c);font-size:.8em;font-weight:700}
 .n-chart{width:100%;height:auto;display:block;overflow:visible;margin-top:2px}
 .n-chart text{font-family:inherit;fill:var(--m);font-size:9.5px}.n-chart .big{fill:var(--t);font-size:17px;font-weight:800}.n-chart .pos{fill:var(--a);font-size:9.5px;font-weight:700}
@@ -410,7 +410,7 @@ html[data-reduce] .hlw{animation:none;color:rgba(255,255,255,.8)}
 .rms{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 18px calc(32px + env(safe-area-inset-bottom))}
 .rms article{max-width:680px;margin:0 auto}.rmh{color:var(--rm-m);font-size:.85rem;margin-bottom:4px}.rms h1{font-size:1.3em;line-height:1.7;margin:0 0 12px;color:var(--rm-tx)}
 #rmw .lb{line-height:2.05}.rmr{margin-top:22px}.rmr .rdb{width:100%}.rmv{display:flex;gap:10px;margin-top:12px}.rmv .btn{flex:1}
-.dn-tg{position:relative;width:58px;aspect-ratio:16/9;flex:0 0 auto;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;line-height:0}
+.dn-tg{position:relative;width:36px;height:36px;flex:0 0 auto;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;line-height:0}
 .dn-tg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;border-radius:999px;visibility:hidden;transform:translateZ(0)}
 .dn-tg video.on{visibility:visible}
 .dn-tg:focus-visible{outline:3px solid var(--a);outline-offset:4px}
@@ -800,7 +800,7 @@ var rc=row("fm='due';go('fl')",'🗂',n2?fa(n2)+' کارت برای مرور':'�
  rq=row("go('qz')",'✅','یک آزمون کوتاه',H.length?'آخرین نمره: '+fa(H[H.length-1].pct)+'٪':'هنوز آزمونی نداده‌اید'),
  fresh=!rd&&!Object.keys(U.srs).length;
 return '<div class="card plan"><b>📋 برنامه‌ی امروز</b>'+(fresh?rl+rc:rc+rl)+rq+'</div>'}
-function homeHTML(){var k=TABS[U.hsel==null?0:U.hsel][0],D=hdat(k),h='<div class="n-top"><div class="n-logo">AUD</div><b>مرور حسابرسی</b><span class="n-sp"></span><span class="n-chip">🔥 '+fa(strk())+' روز</span><span id="dnsw" class="dn-ph"></span><button class="ib" onclick="sh()" aria-label="تنظیمات">⚙</button></div>';
+function homeHTML(){var k=TABS[U.hsel==null?0:U.hsel][0],D=hdat(k),h='<div class="n-top"><div class="n-logo"><img src="icons/icon-192.png" alt="" loading="lazy"></div><b>مرور حسابرسی</b><span class="n-sp"></span><span class="n-chip">🔥 '+fa(strk())+' روز</span><span id="dnsw" class="dn-ph"></span><button class="ib" onclick="sh()" aria-label="تنظیمات">⚙</button></div>';
 h+=topHTML()+planHTML();return h}
 function resFl(id){fm='all';go('fl');var i=fq.indexOf(id);if(i>=0){fi=i;rFl(false)}}
 function resHTML(){var L=U.last,t='',s='',fn='';if(!L)return '';
