@@ -411,7 +411,7 @@ html[data-reduce] .hlw{animation:none;color:rgba(255,255,255,.8)}
 .rms article{max-width:680px;margin:0 auto}.rmh{color:var(--rm-m);font-size:.85rem;margin-bottom:4px}.rms h1{font-size:1.3em;line-height:1.7;margin:0 0 12px;color:var(--rm-tx)}
 #rmw .lb{line-height:2.05}.rmr{margin-top:22px}.rmr .rdb{width:100%}.rmv{display:flex;gap:10px;margin-top:12px}.rmv .btn{flex:1}
 .dn-ph{display:inline-flex;align-items:center;line-height:0}
-.dn-tg{position:relative;width:84px;height:34px;flex:0 0 auto;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;line-height:0}
+.dn-tg{position:relative;width:60px;height:34px;flex:0 0 auto;padding:0;border:0;border-radius:999px;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;line-height:0}
 .dn-tg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;border-radius:999px;visibility:hidden;transform:translateZ(0)}
 .dn-tg video.on{visibility:visible}
 .dn-tg:focus-visible{outline:3px solid var(--a);outline-offset:4px}
@@ -445,7 +445,7 @@ function emp(ic,t,s,bl,bf,sm){return '<div class="'+(sm?'':'card ')+'emp'+(sm?' 
 function today(){var d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)}
 function mark(){U.days[today()]=1}
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
-function theme(){var h=document.documentElement,a=ACC[U.acc]||ACC.blue,c=a[U.night?1:0];h.setAttribute('data-theme',U.night?'dark':'light');h.style.setProperty('--a',c);h.style.setProperty('--at',U.night?'#10131a':'#fff');h.style.setProperty('--fs',U.fs+'px');h.style.setProperty('--ff',U.fsF+'px');h.style.setProperty('--fq',U.fsQ+'px');h.setAttribute('data-accent',U.acc);U.glass?h.setAttribute('data-glass',''):h.removeAttribute('data-glass');U.neo?h.setAttribute('data-neo',''):h.removeAttribute('data-neo');U.bento?h.setAttribute('data-bento',''):h.removeAttribute('data-bento');(U.night&&U.black)?h.setAttribute('data-black',''):h.removeAttribute('data-black');U.reduce?h.setAttribute('data-reduce',''):h.removeAttribute('data-reduce');var ks=Object.keys(ACC);h.style.setProperty('--b1',c+'66');h.style.setProperty('--b2',ACC[ks[(ks.indexOf(U.acc)+2)%6]][U.night?1:0]+'55');var m=document.querySelector('meta[name=theme-color]');m.content=c;try{window.AndroidBridge&&window.AndroidBridge.setStatusBarColor&&window.AndroidBridge.setStatusBarColor(c)}catch(e){}$('bn').textContent=U.night?'☀':'🌙'}
+function theme(){var h=document.documentElement,a=ACC[U.acc]||ACC.blue,c=a[U.night?1:0];h.setAttribute('data-theme',U.night?'dark':'light');h.style.setProperty('--a',c);h.style.setProperty('--at',U.night?'#10131a':'#fff');h.style.setProperty('--fs',U.fs+'px');h.style.setProperty('--ff',U.fsF+'px');h.style.setProperty('--fq',U.fsQ+'px');h.setAttribute('data-accent',U.acc);U.glass?h.setAttribute('data-glass',''):h.removeAttribute('data-glass');U.neo?h.setAttribute('data-neo',''):h.removeAttribute('data-neo');U.bento?h.setAttribute('data-bento',''):h.removeAttribute('data-bento');(U.night&&U.black)?h.setAttribute('data-black',''):h.removeAttribute('data-black');U.reduce?h.setAttribute('data-reduce',''):h.removeAttribute('data-reduce');var ks=Object.keys(ACC);h.style.setProperty('--b1',c+'66');h.style.setProperty('--b2',ACC[ks[(ks.indexOf(U.acc)+2)%6]][U.night?1:0]+'55');var m=document.querySelector('meta[name=theme-color]');m.content=c;try{window.AndroidBridge&&window.AndroidBridge.setStatusBarColor&&window.AndroidBridge.setStatusBarColor(c)}catch(e){}$('bn').textContent=U.night?'☀':'🌙';if(typeof DNSW!=='undefined'&&DNSW)DNSW.sync()}
 var TABS=[['law','📜','درسنامه'],['fl','🗂','فلش‌کارت'],['qz','✅','آزمون'],['ex','⏱','امتحان'],['gl','🔎','واژه‌نامه'],['st','📊','آمار']],tab='law';
 var inEd=0,inSr=0;function go(t){tab=t;var tt=TABS.filter(function(x){return x[0]==t})[0];$('ht').textContent=tt[1]+' '+tt[2];inEd=0;inSr=0;$('nv').innerHTML=TABS.map(function(x){return '<button class="'+(x[0]==t?'on':'')+'" onclick="go(\''+x[0]+'\')"><span>'+x[1]+'</span>'+x[2]+'</button>'}).join('');if(t=='fl')rFl();if(t=='qz'||t=='ex')rQzStart();if(t=='gl')rGl();if(t=='st')rSt();if(t=='law')rLaw();scrollTo(0,0)}
 /* خلاصه */
@@ -653,6 +653,7 @@ function run(v,other,toNight){
   if(p&&p.catch)p.catch(function(){clearTimeout(watchdog);liteOff();cur=null;U.night=toNight?1:0;if(!toNight)U.black=0;theme();sv();sync();setBusy(false)});
 }
 return {
+  sync:function(){if(!cur)sync()},
   mount:function(){
     if(!el)build();
     var ph=document.getElementById('dnsw');
