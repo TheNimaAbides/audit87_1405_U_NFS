@@ -612,9 +612,6 @@ function show(on,off){on.classList.add('on');off.classList.remove('on')}
 function reduce(){return !!(U.reduce||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))}
 function sync(){if(!el)return;var on=!!U.night;el.setAttribute('aria-checked',on?'true':'false');show(on?B:A,on?A:B)}
 function ok(){if(++ready==2)setBusy(false)}
-var lite=0;
-function liteOn(){var h=document.documentElement;if(!U.reduce&&!h.hasAttribute('data-reduce')){h.setAttribute('data-reduce','');lite=1}}
-function liteOff(){if(lite){document.documentElement.removeAttribute('data-reduce');lite=0}}
 function build(){
   el=document.createElement('button');
   el.type='button';el.className='dn-tg';el.setAttribute('role','switch');
@@ -637,10 +634,10 @@ function build(){
    به همین دلیل حین پخش ویدیو اجرا نمی‌شود (باعث هنگ/کندی می‌شد)؛
    فقط یک‌بار، درست بعد از پایان انیمیشن، اجرا می‌شود. */
 function run(v,other,toNight){
-  setBusy(true);cur=v;liteOn();
+  setBusy(true);cur=v;
   var fin=function(){
     if(!cur)return;
-    v.onended=null;cur=null;clearTimeout(watchdog);liteOff();
+    v.onended=null;cur=null;clearTimeout(watchdog);
     U.night=toNight?1:0;if(!toNight)U.black=0;theme();sv();
     show(other,v);
     try{v.currentTime=0;v.pause()}catch(e){}
@@ -648,9 +645,9 @@ function run(v,other,toNight){
     setBusy(false);
   };
   v.onended=fin;
-  var dur=(isFinite(v.duration)&&v.duration>0)?v.duration:2.2,watchdog=setTimeout(fin,dur*1000+700);
+  var dur=(isFinite(v.duration)&&v.duration>0)?v.duration:5,watchdog=setTimeout(fin,dur*1000+700);
   var p=v.play();
-  if(p&&p.catch)p.catch(function(){clearTimeout(watchdog);liteOff();cur=null;U.night=toNight?1:0;if(!toNight)U.black=0;theme();sv();sync();setBusy(false)});
+  if(p&&p.catch)p.catch(function(){clearTimeout(watchdog);cur=null;U.night=toNight?1:0;if(!toNight)U.black=0;theme();sv();sync();setBusy(false)});
 }
 return {
   sync:function(){if(!cur)sync()},
